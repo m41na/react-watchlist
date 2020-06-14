@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 
-import { defaultSymbols, repoSymbols } from "../services";
-
-const useSymbolContext = (symbol) => {
+const useSymbols = (defaultSymbols, repoSymbols) => {
   const [listing, setListing] = useState([]);
   const [dropdown, setDropdown] = useState([]);
 
   useEffect(() => {
-    setListing(defaultSymbols);
-    setDropdown(
-      repoSymbols
-        .map((sy) => sy.symbol)
-        .filter((sy) => !defaultSymbols.includes(sy))
-    );
-  }, []);
+    if (defaultSymbols && repoSymbols) {
+      setListing(defaultSymbols);
+      setDropdown(
+        repoSymbols
+          .map((sy) => sy.symbol)
+          .filter((sy) => !defaultSymbols.includes(sy))
+      );
+    }
+  }, [defaultSymbols, repoSymbols]);
 
   const onSelectSymbol = (symbol) => {
     if (!listing.includes(symbol)) {
@@ -36,7 +36,11 @@ const useSymbolContext = (symbol) => {
     }
   };
 
-  return [listing, dropdown, onSelectSymbol, onRemoveSymbol];
+  const onReloadSymbols = (symbols) => {
+    setListing(symbols);
+  }
+
+  return [listing, dropdown, onSelectSymbol, onRemoveSymbol, onReloadSymbols];
 };
 
-export default useSymbolContext;
+export default useSymbols;

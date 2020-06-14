@@ -5,6 +5,21 @@ export const fakeUser = {
 
 export const repoSymbols = [
   {
+    symbol: "SPY",
+    name: "SPDR S&P 500 ETF Trust (SPY)",
+    description: "NYSEArca - Nasdaq Real Time Price. Currency in USD",
+  },
+  {
+    symbol: "DJI",
+    name: "Dow Jones Industrial Average (^DJI)",
+    description: "DJI - DJI Real Time Price. Currency in USD",
+  },
+  {
+    symbol: "RUSL",
+    name: "Direxion Daily Russia Bull 2X Shares (RUSL)",
+    description: "NYSEArca - Nasdaq Real Time Price. Currency in USD",
+  },
+  {
     symbol: "NDX",
     name: "NASDAQ 100 (^NDX)",
     description: "Nasdaq GIDS - Nasdaq GIDS Real Time Price. Currency in USD",
@@ -19,21 +34,6 @@ export const repoSymbols = [
     name: "Russell 2000 (^RUT)",
     description:
       "Chicago Options - Chicago Options Delayed Price. Currency in USD",
-  },
-  {
-    symbol: "RUSL",
-    name: "Direxion Daily Russia Bull 2X Shares (RUSL)",
-    description: "NYSEArca - Nasdaq Real Time Price. Currency in USD",
-  },
-  {
-    symbol: "DJI",
-    name: "Dow Jones Industrial Average (^DJI)",
-    description: "DJI - DJI Real Time Price. Currency in USD",
-  },
-  {
-    symbol: "SPY",
-    name: "SPDR S&P 500 ETF Trust (SPY)",
-    description: "NYSEArca - Nasdaq Real Time Price. Currency in USD",
   },
   {
     symbol: "CSV",

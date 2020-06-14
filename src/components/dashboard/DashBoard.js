@@ -7,7 +7,7 @@ import DataTable from "../datatable/DataTable";
 import DataSelector from "../datatable/DataSelector";
 import { useStyles } from "./Dashboard.style";
 
-function DashBoard({ quotes, symbol, setSymbol, removeSymbol, updateSymbol }) {
+function DashBoard({ defaultSymbols, repoSymbols, quotes, symbol, setSymbol, removeSymbol, updateSymbol, restoreSymbols }) {
   const classes = useStyles();
   const symbolDetails = quotes.symbols.find((sy) => sy.symbol === symbol);
 
@@ -19,6 +19,9 @@ function DashBoard({ quotes, symbol, setSymbol, removeSymbol, updateSymbol }) {
           setSymbol={setSymbol}
           removeSymbol={removeSymbol}
           updateSymbol={updateSymbol}
+          restoreSymbols={restoreSymbols}
+          defaultSymbols={defaultSymbols}
+          repoSymbols={repoSymbols}
         />
       </Grid>
       {symbolDetails && (
@@ -41,6 +44,16 @@ function DashBoard({ quotes, symbol, setSymbol, removeSymbol, updateSymbol }) {
 }
 
 DashBoard.propTypes = {
+  defaultSymbols: PropTypes.arrayOf(
+    PropTypes.string
+  ).isRequired,
+  repoSymbols: PropTypes.arrayOf(
+    PropTypes.shape({
+      symbol: PropTypes.string,
+      name: PropTypes.string,
+      description: PropTypes.string
+    })
+  ).isRequired,
   quotes: PropTypes.shape({
     data: PropTypes.arrayOf(
       PropTypes.shape({
@@ -66,6 +79,7 @@ DashBoard.propTypes = {
   setSymbol: PropTypes.func.isRequired,
   removeSymbol: PropTypes.func.isRequired,
   updateSymbol: PropTypes.func.isRequired,
+  restoreSymbols: PropTypes.func.isRequired,
 };
 
 DashBoard.defaultProps = {

@@ -1,68 +1,50 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a react-based demo project for a stocks watch list. View the live app [on the web](https://csb-xsdmn.vercel.app/)
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+With this demo, you can be able to:
 
-### `npm start`
+### `View default symbols (radio buttons on the top left)`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+From the radio boxes provided, you have 5 default options you can click on at any time<br />
+You can at any time select a different symbol from the dropdown on the top right
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### `Select a symbol`
 
-### `npm test`
+From the existing dropdown on the top, right, select an option from the dropdown<br />
+The selected value move to the default sesion, and the last selected value on the default options will
+move to the dropdown. In that way, the default options size will remain the same (5 in this case)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `Remove a symbol`
 
-### `npm run build`
+Using the big red action button on the top left side, click to remove the currently selected symbol.<br />
+This symbol won't be available again unless you refresh the screen.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+If you remove all the symbols, you will have the option to reload symbols from a given selection
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### `Add a symbol`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To do thisaction in this demo, you will need to remove all the symbols first, to get the correct for to add symboils<br />
+Once on this form, you can select from the options available what symbols to add
 
-### `npm run eject`
+### `View symbol price details`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This is pretty straight forward. For any symbol you may have selected, clicking on a table row will show more details about the row<br />
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To 'unselect' a row, click on the same row again anywhere else that's not the radio button
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### `Realtime data update`
+
+At any time you have a symbol selected, you can toggle the 'Realtime' switch on the top, right side fo the screen.<br />
+The refresh interval is set at ntervals of 5 seconds using randomly simulated data.<br />
+
+To turn off 'Realtime' mode, simply toggle the swict or select a different symbol
+
+### `Pagination (with page size option)`
+
+You can easily traverse the existing data set using pagination
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

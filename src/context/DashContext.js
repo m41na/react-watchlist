@@ -8,6 +8,8 @@ export default React.createContext({
     duration: 3000,
     action: () => {},
   },
+  defaultSymbols: [],
+  repoSymbols: [],
   quotes: {
     headers: [],
     data: [],
@@ -18,6 +20,7 @@ export default React.createContext({
   addSymbol: (symbol) => {},
   removeSymbol: (symbol) => {},
   updateSymbol: (symbol) => {},
+  restoreSymbols: (symbols) => {},
   showAlert: (alert) => {},
   hideAlert: () => {},
 });

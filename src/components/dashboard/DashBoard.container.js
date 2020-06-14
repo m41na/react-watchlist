@@ -3,10 +3,12 @@ import DashContext from "../../context/DashContext";
 import DashBoard from "./DashBoard";
 
 const DashBoardContainer = () => {
-  const { quotes, symbol, showAlert, setSymbol, addSymbol, removeSymbol, updateSymbol } = useContext(DashContext);
+  const { defaultSymbols, repoSymbols, quotes, symbol, showAlert, setSymbol, addSymbol, removeSymbol, updateSymbol, restoreSymbols } = useContext(DashContext);
 
   return (
     <DashBoard
+      defaultSymbols={defaultSymbols} 
+      repoSymbols={repoSymbols}
       quotes={quotes}
       symbol={symbol}
       showAlert={showAlert}
@@ -14,6 +16,7 @@ const DashBoardContainer = () => {
       addSymbol={addSymbol}
       removeSymbol={removeSymbol}
       updateSymbol={updateSymbol}
+      restoreSymbols={restoreSymbols}
     />
   );
 };

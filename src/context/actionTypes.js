@@ -1,10 +1,11 @@
+export const INIT_STATE = 'INIT_STATE';
+export const SET_SYMBOL = 'SET_SYMBOL';
 export const ADD_SYMBOL = 'ADD_SYMBOL';
 export const REMOVE_SYMBOL = 'REMOVE_SYMBOL';
 export const UPDATE_SYMBOL = 'UPDATE_SYMBOL';
+export const RESTORE_SYMBOLS = 'RESTORE_SYMBOLS';
 export const SHOW_ALERT = 'SHOW_ALERT';
 export const HIDE_ALERT = 'HIDE_ALERT';
-export const INIT_STATE = 'INIT_STATE';
-export const SET_SYMBOL = 'SET_SYMBOL';
 
 export const InitStateAction = (quotes) => ({
     type: INIT_STATE,
@@ -33,6 +34,12 @@ export const UpdateSymbolAction = (symbol, data) => ({
     type: UPDATE_SYMBOL,
     symbol,
     data
+});
+
+export const RestoreSymbolsAction = (symbol, quotes) => ({
+    type: RESTORE_SYMBOLS,
+    symbol,
+    quotes
 });
 
 export const ShowAlertAction = (alert) => ({

@@ -12,7 +12,9 @@ import {
     SHOW_ALERT,
     ShowAlertAction,
     HideAlertAction,
-    HIDE_ALERT}
+    HIDE_ALERT,
+    RestoreSymbolsAction,
+    RESTORE_SYMBOLS}
     from '../../context/actionTypes';
 
 describe("creating actions", () => {
@@ -48,6 +50,15 @@ describe("creating actions", () => {
             type: UPDATE_SYMBOL,
             symbol: 'ghi',
             data: expect.any(Array)
+        }))
+    });
+
+    it('restore symbols action should match object with correct type and contents', () => {
+        const restoreSymbols = RestoreSymbolsAction('ABC', {});
+        expect(restoreSymbols).toEqual(expect.objectContaining({
+            type: RESTORE_SYMBOLS,
+            symbol: 'ABC',
+            quotes: expect.any(Object)
         }))
     });
 

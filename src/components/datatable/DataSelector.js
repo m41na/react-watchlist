@@ -10,17 +10,28 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Fab from "@material-ui/core/Fab";
 import DeleteIcon from "@material-ui/icons/Delete";
-import useSymbolContext from "../../hooks/useSymbolContext";
+import useSymbols from "../../hooks/useSymbols";
+import DataRestore from "./DataRestore";
 import DashDialog from "../alerts/DashDialog";
 import Switch from "@material-ui/core/Switch";
 import { useStyles } from "./DataSelector.style";
 
-const DataSelector = ({ selected, setSymbol, removeSymbol, updateSymbol }) => {
+const DataSelector = ({
+  defaultSymbols,
+  repoSymbols,
+  selected,
+  setSymbol,
+  removeSymbol,
+  updateSymbol,
+  restoreSymbols,
+}) => {
   const classes = useStyles();
 
-  const [listing, dropdown, onSelectSymbol, onRemoveSymbol] = useSymbolContext(
-    selected
+  const [listing, dropdown, onSelectSymbol, onRemoveSymbol, onReloadSymbols] = useSymbols(
+    defaultSymbols,
+    repoSymbols
   );
+  
   const [dialog, setDialog] = useState(false);
   const [refresh, setRefresh] = React.useState(false);
 
@@ -61,31 +72,39 @@ const DataSelector = ({ selected, setSymbol, removeSymbol, updateSymbol }) => {
           color="secondary"
           aria-label="add"
           onClick={confirmDialog}
+          disabled={listing.length === 0}
         >
           <DeleteIcon />
         </Fab>
       </Grid>
-      <Grid item xs={8}>
-        <FormControl component="fieldset" className={classes.paper}>
-          <RadioGroup
-            row
-            aria-label="position"
-            name="position"
-            value={selected}
-            onChange={handleChange}
-          >
-            {listing.map((symbol) => (
-              <FormControlLabel
-                key={symbol}
-                value={symbol}
-                control={<Radio color="primary" />}
-                label={symbol}
-                labelPlacement="end"
-              />
-            ))}
-          </RadioGroup>
-        </FormControl>
-      </Grid>
+      {listing.length === 0 && (
+        <Grid item xs={8}>
+          <DataRestore restoreSymbols={restoreSymbols} onReloadSymbols={onReloadSymbols} />
+        </Grid>
+      )}
+      {listing.length > 0 && (
+        <Grid item xs={8}>
+          <FormControl component="fieldset" className={classes.paper}>
+            <RadioGroup
+              row
+              aria-label="position"
+              name="position"
+              value={selected}
+              onChange={handleChange}
+            >
+              {listing.map((symbol) => (
+                <FormControlLabel
+                  key={symbol}
+                  value={symbol}
+                  control={<Radio color="primary" />}
+                  label={symbol}
+                  labelPlacement="end"
+                />
+              ))}
+            </RadioGroup>
+          </FormControl>
+        </Grid>
+      )}
       <Grid item xs={3} className={classes.dropdown}>
         <FormControlLabel
           control={
@@ -109,6 +128,7 @@ const DataSelector = ({ selected, setSymbol, removeSymbol, updateSymbol }) => {
             value={""}
             onChange={handleChange}
             displayEmpty
+            disabled={dropdown.length === 0}
           >
             {dropdown.map((symbol) => (
               <MenuItem value={symbol} key={symbol}>
@@ -130,10 +150,19 @@ const DataSelector = ({ selected, setSymbol, removeSymbol, updateSymbol }) => {
 };
 
 DataSelector.propTypes = {
+  defaultSymbols: PropTypes.arrayOf(PropTypes.string).isRequired,
+  repoSymbols: PropTypes.arrayOf(
+    PropTypes.shape({
+      symbol: PropTypes.string,
+      name: PropTypes.string,
+      description: PropTypes.string,
+    })
+  ).isRequired,
   selected: PropTypes.string.isRequired,
   setSymbol: PropTypes.func.isRequired,
   removeSymbol: PropTypes.func.isRequired,
   updateSymbol: PropTypes.func.isRequired,
+  restoreSymbols: PropTypes.func.isRequired,
 };
 
 export default DataSelector;

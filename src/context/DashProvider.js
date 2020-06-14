@@ -4,11 +4,12 @@ import { DashReducer } from "./DashReducer";
 import {
   InitStateAction,
   SetSymbolAction,
-  ShowAlertAction,
-  HideAlertAction,
   AddSymbolAction,
   RemoveSymbolAction,
   UpdateSymbolAction,
+  RestoreSymbolsAction,
+  ShowAlertAction,
+  HideAlertAction,
 } from "./actionTypes";
 import {
   ALERT_SUCCESS_TYPE,
@@ -17,6 +18,7 @@ import {
 } from "../constants";
 import {
   defaultHeaders,
+  defaultSymbols,
   repoQuotes,
   repoSymbols,
   simulateStockTick,
@@ -31,6 +33,8 @@ const DashProvider = (props) => {
       duration: 3000,
       action: () => {},
     },
+    defaultSymbols, 
+    repoSymbols,
     quotes: {
       headers: defaultHeaders,
       symbols: repoSymbols,
@@ -66,6 +70,10 @@ const DashProvider = (props) => {
     [showAlert]
   );
 
+  const setSymbol = (symbol) => {
+    dispatch(SetSymbolAction(symbol, repoQuotes[symbol]));
+  };
+
   const addSymbol = (symbol) => {
     dispatch(AddSymbolAction(symbol));
     showAlert({ type: ALERT_INFO_TYPE, message: "new symbol added" });
@@ -100,29 +108,36 @@ const DashProvider = (props) => {
     }
   };
 
-  const setSymbol = (symbol) => {
-    dispatch(SetSymbolAction(symbol, repoQuotes[symbol]));
-  };
+  const restoreSymbols = (selected) => {
+    const symbol = selected[0];
+    dispatch(RestoreSymbolsAction(symbol, {data: repoQuotes[symbol], symbols: repoSymbols, headers: defaultHeaders}));
+    showAlert({ type: ALERT_INFO_TYPE, message: "selected symbols restored" });
+  }
 
   useEffect(() => {
-    const symbol = repoSymbols[0].symbol;
-    initAppData(symbol, {
-      data: [],
-      headers: defaultHeaders,
-      symbols: repoSymbols,
-    });
+    if (repoSymbols.length > 0) {
+      const symbol = repoSymbols[0].symbol;
+      initAppData(symbol, {
+        data: [],
+        headers: defaultHeaders,
+        symbols: repoSymbols,
+      });
+    }
   }, [initAppData]);
 
   return (
     <DashContext.Provider
       value={{
         alert: state.alert,
+        defaultSymbols: state.defaultSymbols, 
+        repoSymbols: state.repoSymbols,
         quotes: state.quotes,
         symbol: state.symbol,
+        setSymbol,
         addSymbol,
         removeSymbol,
         updateSymbol,
-        setSymbol,
+        restoreSymbols,
         showAlert,
         hideAlert,
       }}

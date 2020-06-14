@@ -10,6 +10,9 @@ describe("behavior of data selector when rendered", () => {
     setSymbol: jest.fn(),
     removeSymbol: jest.fn(),
     updateSymbol: jest.fn(),
+    restoreSymbols: jest.fn(),
+    defaultSymbols: [],
+    repoSymbols: []
   };
   it("should render data selector with the expected controls", () => {
     const component = shallow(<DataSelector {...initialProps} />);

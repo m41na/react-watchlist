@@ -9,6 +9,9 @@ describe("behavior of dashboard when rendered", () => {
     setSymbol: jest.fn(),
     removeSymbol: jest.fn(),
     updateSymbol: jest.fn(),
+    restoreSymbols: jest.fn(),
+    defaultSymbols: [],
+    repoSymbols: []
   };
   it("should render dashboard without the desription grid", () => {
     const component = shallow(<DashBoard {...initialProps} />);

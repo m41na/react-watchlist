@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "100vh",
   },
   main: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(4),
     marginBottom: theme.spacing(2),
   },
   footer: {
@@ -59,7 +59,7 @@ export default function App() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Container component="main" className={classes.main} maxWidth="md">
+      <Container component="main" className={classes.main}>
         <div className={classes.appbar}>
           <AppBar position="static">
             <Toolbar>
