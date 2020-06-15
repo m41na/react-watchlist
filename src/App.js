@@ -8,7 +8,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
+import ShowChartIcon from '@material-ui/icons/ShowChart';
 import Home from "./components/Home";
 
 export function Copyright() {
@@ -69,7 +69,7 @@ export default function App() {
                 color="inherit"
                 aria-label="menu"
               >
-                <MenuIcon />
+                <ShowChartIcon />
               </IconButton>
               <Typography variant="h6" className={classes.title}>
                 Watchlist
